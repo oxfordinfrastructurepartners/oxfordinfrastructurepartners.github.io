@@ -273,8 +273,41 @@
   .ft-note{padding-top:26px;font-size:12.5px;color:#7f93b3;line-height:1.6;max-width:760px}
   @media(max-width:600px){.ft-contact{text-align:left}}
 
+  /* HERO imagery */
+  .hero-photo{position:absolute;top:0;right:0;width:62%;height:100%;background:url('assets/oip-hero-adobe.jpg') center right/cover no-repeat;opacity:.14;mix-blend-mode:luminosity;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 70%);mask-image:linear-gradient(90deg,transparent 0%,#000 70%);pointer-events:none;z-index:1}
+  .beams{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+  .beam{position:absolute;height:1.5px;width:46%;left:-46%;background:linear-gradient(90deg,transparent,rgba(120,180,255,.55) 45%,rgba(180,215,255,.9) 55%,transparent);filter:blur(.3px);opacity:0;animation:beam 8s linear infinite}
+  .beam.b2{top:38%;width:38%;animation-delay:2.4s;animation-duration:9.5s}
+  .beam.b3{top:62%;width:52%;animation-delay:4.8s;animation-duration:7.5s}
+  .beam.b4{top:80%;width:30%;animation-delay:6.2s;animation-duration:10s;background:linear-gradient(90deg,transparent,rgba(95,160,255,.45),transparent)}
+  @keyframes beam{0%{opacity:0;transform:translateX(0)}8%{opacity:1}55%{opacity:.55}100%{opacity:0;transform:translateX(360%)}}
+
+  /* cinematic quote band */
+  .quote-band{position:relative;overflow:hidden;color:#fff;text-align:center;background:#061a3a}
+  .quote-band .qbg{position:absolute;inset:0;background:url('assets/oip-hero-adobe.jpg') center 30%/cover no-repeat;filter:grayscale(1) contrast(1.05);opacity:.28}
+  .quote-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,22,52,.82),rgba(8,32,69,.9))}
+  .quote-band .inner{position:relative;z-index:2;padding:112px 0}
+  .quote-band .mk{width:40px;height:40px;margin:0 auto 24px;opacity:.5}
+  .quote-band blockquote{margin:0 auto;max-width:900px;font-size:clamp(27px,4.4vw,46px);font-weight:300;line-height:1.24;letter-spacing:-.02em;color:#fff}
+  .quote-band blockquote b{font-weight:700}
+  .quote-band cite{display:block;margin-top:28px;font-style:normal;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8fb4ee;font-weight:700}
+
+  /* global routes band */
+  .routes-band{position:relative;overflow:hidden;background:radial-gradient(1000px 500px at 50% 120%, #14396f 0%, rgba(20,57,111,0) 60%),linear-gradient(160deg,#0a2650,#082045);color:#fff}
+  .routes-band .inner{position:relative;z-index:2;padding:96px 0;text-align:center}
+  .routes-band h2{color:#fff}
+  .routes-band p.sub{color:#b9c8e2;max-width:640px;margin:16px auto 0;font-weight:300;font-size:18px}
+  .routes-svg{display:block;width:100%;max-width:960px;margin:34px auto 0;height:auto}
+  .routes-svg .arc{fill:none;stroke:url(#rg);stroke-width:1.4;opacity:.9;stroke-linecap:round;stroke-dasharray:6 500;animation:dash 6s linear infinite}
+  .routes-svg .arc.a2{animation-delay:1.2s}.routes-svg .arc.a3{animation-delay:2.1s}.routes-svg .arc.a4{animation-delay:3s}.routes-svg .arc.a5{animation-delay:.6s}.routes-svg .arc.a6{animation-delay:3.8s}
+  .routes-svg .node{fill:#bcd6ff}
+  .routes-svg .ring{fill:none;stroke:rgba(120,180,255,.35);stroke-width:1}
+  .routes-svg .grid{stroke:rgba(255,255,255,.08);stroke-width:1;fill:none}
+  @keyframes dash{to{stroke-dashoffset:-506}}
+
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1;transform:none;transition:none}
+    .beam,.routes-svg .arc{animation:none;opacity:.6}
     html{scroll-behavior:auto}
   }
 </style>
@@ -294,6 +327,8 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-photo"></div>
+  <div class="beams"><span class="beam"></span><span class="beam b2"></span><span class="beam b3"></span><span class="beam b4"></span></div>
   <div class="wrap hero-in">
     <div class="tag reveal"><span class="dot"></span> Prepared for Laser Light Communications</div>
     <h1 class="reveal d1">Laser Light Communications<span class="thin">A commercial growth strategy, built on your public position — not a template.</span></h1>
@@ -439,6 +474,16 @@
   </div>
 </section>
 
+<!-- QUOTE BAND -->
+<section class="quote-band">
+  <div class="qbg"></div>
+  <div class="wrap inner">
+    <svg class="mk" viewBox="0 0 24 24" fill="#8fb4ee"><path d="M7 7h4v6c0 2.2-1.3 3.6-3.5 4.2l-.5-1.4c1.2-.4 1.8-1 1.9-1.8H7zm8 0h4v6c0 2.2-1.3 3.6-3.5 4.2l-.5-1.4c1.2-.4 1.8-1 1.9-1.8H15z"/></svg>
+    <blockquote>Networks move data. <b>Laser Light moves economies.</b></blockquote>
+    <cite>Bob Brumley, Chairman & CEO, Laser Light Communications</cite>
+  </div>
+</section>
+
 <!-- NUMBERS -->
 <section class="section soft">
   <div class="wrap">
@@ -452,6 +497,42 @@
       <div class="stat reveal d3"><div class="num" data-prefix="$" data-value="600" data-suffix="M"></div><div class="lab">Your own public number</div><p>The capacity you already cite. This engagement exists to add the next line to that figure, on a schedule, not by chance.</p></div>
     </div>
     <p class="disclaimer reveal">None of the above is a promise of revenue. It is the cost of running without a structured commercial engine, and the math of one built to pay for itself.</p>
+  </div>
+</section>
+
+<!-- ROUTES BAND -->
+<section class="routes-band">
+  <div class="wrap inner">
+    <div class="eyebrow reveal" style="color:#8fb4ee;justify-content:center">The reach you get to sell</div>
+    <h2 class="reveal">One integrated network. 27 global routes.</h2>
+    <p class="sub reveal">Fiber, subsea, and an optical-satellite layer, orchestrated as a single software-defined utility. This is the footprint your commercial engine converts into signed capacity.</p>
+    <svg class="routes-svg reveal" viewBox="0 0 960 360" role="img" aria-label="Stylised global optical route network">
+      <defs>
+        <linearGradient id="rg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#5fa0ff" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#a9ccff"/>
+          <stop offset="1" stop-color="#5fa0ff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path class="grid" d="M40 210 Q480 150 920 210"/>
+      <path class="grid" d="M40 250 Q480 200 920 250"/>
+      <path class="grid" d="M40 170 Q480 110 920 170"/>
+      <path class="arc a1" d="M120 240 Q210 140 300 150"/>
+      <path class="arc a2" d="M300 150 Q470 60 640 130"/>
+      <path class="arc a3" d="M470 220 Q650 120 820 210"/>
+      <path class="arc a4" d="M120 240 Q260 330 400 300"/>
+      <path class="arc a5" d="M640 130 Q690 215 700 290"/>
+      <path class="arc a6" d="M470 220 Q560 150 640 130"/>
+      <circle class="ring" cx="300" cy="150" r="14"/>
+      <circle class="ring" cx="640" cy="130" r="18"/>
+      <circle class="node" cx="120" cy="240" r="4"/>
+      <circle class="node" cx="300" cy="150" r="5"/>
+      <circle class="node" cx="470" cy="220" r="4"/>
+      <circle class="node" cx="640" cy="130" r="6"/>
+      <circle class="node" cx="820" cy="210" r="4"/>
+      <circle class="node" cx="400" cy="300" r="4"/>
+      <circle class="node" cx="700" cy="290" r="4"/>
+    </svg>
   </div>
 </section>
 
