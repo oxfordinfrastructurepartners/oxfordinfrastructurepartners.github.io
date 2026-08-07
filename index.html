@@ -258,6 +258,7 @@
   /* about */
   .about-card{display:grid;grid-template-columns:300px 1fr;gap:40px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:40px;box-shadow:var(--shadow-sm)}
   @media(max-width:720px){.about-card{grid-template-columns:1fr;gap:24px;padding:30px 24px}}
+  .about-card .avatar{width:112px;height:112px;border-radius:20px;object-fit:cover;object-position:center top;margin-bottom:20px;box-shadow:var(--shadow-md);border:1px solid var(--line)}
   .about-card .name{font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
   .about-card .role{color:var(--navy-500);font-weight:700;margin:4px 0 20px;font-size:15px}
   .about-card .meta{font-size:14.5px;color:var(--body);line-height:1.9}
@@ -565,6 +566,7 @@
     <div class="eyebrow reveal">About</div>
     <div class="about-card reveal">
       <div>
+        <img class="avatar" src="assets/appiah-larbi.jpg" alt="Appiah Larbi, Chief Commercial Officer">
         <div class="name">Appiah Larbi</div>
         <div class="role">Chief Commercial Officer</div>
         <div class="meta">
