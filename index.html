@@ -49,9 +49,12 @@
     color:var(--navy-500);margin-bottom:20px;
   }
   .eyebrow::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--navy),transparent);border-radius:2px}
-  .section{padding:104px 0;position:relative}
+  .section{padding:80px 0;position:relative}
   .section.soft{background:radial-gradient(rgba(8,32,69,.05) 1px, transparent 1.4px) 0 0/24px 24px, var(--bg-soft)}
   .section.soft::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 380px at 88% 0%, rgba(47,111,235,.06), transparent 70%);pointer-events:none}
+  /* photographic background for light sections (OIP brand imagery, high-key so text stays legible) */
+  .section.photo-r::after{content:"";position:absolute;top:0;right:0;bottom:0;width:52%;background:url('assets/oip-hero-adobe.jpg') center right/cover no-repeat;opacity:.10;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 82%);mask-image:linear-gradient(90deg,transparent 0%,#000 82%);pointer-events:none;z-index:0}
+  .section.photo-l::after{content:"";position:absolute;top:0;left:0;bottom:0;width:50%;background:url('assets/oip-hero-adobe.jpg') center left/cover no-repeat;opacity:.09;-webkit-mask-image:linear-gradient(270deg,transparent 0%,#000 82%);mask-image:linear-gradient(270deg,transparent 0%,#000 82%);pointer-events:none;z-index:0}
   .section h2{font-size:clamp(28px,4vw,42px);margin-bottom:20px}
   .section .intro{font-size:19px;color:var(--body);max-width:720px}
 
@@ -94,7 +97,7 @@
     url('assets/earth-night.jpg') center 28%/cover no-repeat,
     linear-gradient(180deg,#082045 0%,#0a2650 55%,#061a3a 100%)}
   .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(900px 500px at 70% 0%, #000 0%, transparent 70%);pointer-events:none}
-  .hero-in{position:relative;z-index:2;padding:88px 0 96px}
+  .hero-in{position:relative;z-index:2;padding:70px 0 82px}
   .hero .tag{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#cddaef;font-size:13px;font-weight:600;letter-spacing:.04em;padding:8px 16px;border-radius:100px;margin-bottom:26px}
   .hero .tag .dot{width:7px;height:7px;border-radius:50%;background:#5fa0ff;box-shadow:0 0 0 4px rgba(95,160,255,.2)}
   .hero h1{color:#fff;font-size:clamp(38px,6.4vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin-bottom:22px}
@@ -120,7 +123,7 @@
   .reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.12s}.reveal.d3{transition-delay:.18s}.reveal.d4{transition-delay:.24s}
 
   /* intro band */
-  .band-intro{padding:76px 0;background:#fff}
+  .band-intro{padding:56px 0;background:#fff}
   .band-intro p{font-size:clamp(22px,3vw,30px);line-height:1.4;color:var(--ink);font-weight:300;letter-spacing:-.01em;max-width:900px}
   .band-intro b{font-weight:700}
 
@@ -291,7 +294,7 @@
   .quote-band{position:relative;overflow:hidden;color:#fff;text-align:center;background:#061a3a}
   .quote-band .qbg{position:absolute;inset:0;background:#020814 url('assets/blue-marble.jpg') center 20%/cover no-repeat;opacity:.5}
   .quote-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,22,52,.82),rgba(8,32,69,.9))}
-  .quote-band .inner{position:relative;z-index:2;padding:112px 0}
+  .quote-band .inner{position:relative;z-index:2;padding:88px 0}
   .quote-band .mk{width:40px;height:40px;margin:0 auto 24px;opacity:.5}
   .quote-band blockquote{margin:0 auto;max-width:900px;font-size:clamp(27px,4.4vw,46px);font-weight:300;line-height:1.24;letter-spacing:-.02em;color:#fff}
   .quote-band blockquote b{font-weight:700}
@@ -302,7 +305,7 @@
     linear-gradient(180deg, rgba(8,32,69,.88) 0%, rgba(6,22,52,.8) 100%),
     url('assets/earth-night.jpg') center/cover no-repeat,
     linear-gradient(160deg,#0a2650,#082045)}
-  .routes-band .inner{position:relative;z-index:2;padding:96px 0;text-align:center}
+  .routes-band .inner{position:relative;z-index:2;padding:78px 0;text-align:center}
   .routes-band h2{color:#fff}
   .routes-band p.sub{color:#b9c8e2;max-width:640px;margin:16px auto 0;font-weight:300;font-size:18px}
   .routes-svg{display:block;width:100%;max-width:960px;margin:34px auto 0;height:auto}
@@ -366,21 +369,20 @@
 <section class="section soft">
   <div class="wrap">
     <div class="eyebrow reveal">What's inside</div>
-    <h2 class="reveal">Seven steps, one conclusion</h2>
+    <h2 class="reveal">Six steps, one conclusion</h2>
     <div class="toc-grid">
       <div class="toc-item reveal"><div class="num">01</div><div><div class="tt">The Audit</div><div class="td">What we found about your commercial engine</div></div></div>
       <div class="toc-item reveal d1"><div class="num">02</div><div><div class="tt">The Problems</div><div class="td">What stands between you and real revenue</div></div></div>
       <div class="toc-item reveal"><div class="num">03</div><div><div class="tt">The Numbers</div><div class="td">What that gap is costing you</div></div></div>
       <div class="toc-item reveal d1"><div class="num">04</div><div><div class="tt">The Pathway</div><div class="td">The specific route we would run to close it</div></div></div>
       <div class="toc-item reveal"><div class="num">05</div><div><div class="tt">The Sample</div><div class="td">A draft commercial one-pager we already started</div></div></div>
-      <div class="toc-item reveal d1"><div class="num">06</div><div><div class="tt">The Full Mandate</div><div class="td">Everything we would run, end to end</div></div></div>
-      <div class="toc-item reveal"><div class="num">07</div><div><div class="tt">Engagement & Guarantee</div><div class="td">How we work, and what we stand behind</div></div></div>
+      <div class="toc-item reveal d1"><div class="num">06</div><div><div class="tt">Engagement & Guarantee</div><div class="td">How we work, and what we stand behind</div></div></div>
     </div>
   </div>
 </section>
 
 <!-- AUDIT INTRO -->
-<section class="section" id="audit">
+<section class="section photo-r" id="audit">
   <div class="wrap">
     <div class="eyebrow reveal">The Audit</div>
     <div class="letter reveal d1">
@@ -545,7 +547,7 @@
 </section>
 
 <!-- PATHWAY -->
-<section class="section">
+<section class="section photo-l">
   <div class="wrap">
     <div class="eyebrow reveal">The Pathway</div>
     <h2 class="reveal">The commercial route we would run</h2>
@@ -575,19 +577,6 @@
       <div class="box from"><div class="h">Instead of</div><p>A brilliant story that buyers admire and do not act on.</p></div>
       <div class="arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       <div class="box to"><div class="h">We create</div><p>A structured path from first conversation to executed contract and Financial Close.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- MANDATE -->
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow reveal">The Full Mandate</div>
-    <h2 class="reveal">Everything we would run</h2>
-    <div class="mandate">
-      <div class="mcard reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 12h10v8H4zM18 12h2v8h-2z"/></svg></div><h3>Commercial materials</h3><ul><li>Buyer-facing commercial proposal and one-pager set</li><li>Management presentation and brand-consistent collateral</li><li>Terms framework and positioning by buyer segment</li></ul></div>
-      <div class="mcard reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Pipeline and outreach</h3><ul><li>Prioritised target-account list across routes and the corridor</li><li>Structured, named-owner outreach and lead qualification</li><li>Meeting coordination and a managed, visible pipeline</li></ul></div>
-      <div class="mcard reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><h3>Execution to close</h3><ul><li>Proposal development and negotiation support</li><li>Customer onboarding coordination</li><li>Contract execution through to Financial Close</li></ul></div>
     </div>
   </div>
 </section>
