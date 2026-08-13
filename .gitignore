@@ -30,3 +30,10 @@ OIP-Aubren-Infrastructure-Pipeline.pptx.inspect.ndjson
 Thumbs.db
 desktop.ini
 node_modules/
+
+# Aubren deck build tooling, source renders, and the older PPTX export.
+# The published deck is aubren-pipeline/.
+aubren-deck-build/
+aubren-deck-assets/
+*.inspect.ndjson
+OIP-Aubren-Infrastructure-Pipeline.pptx
