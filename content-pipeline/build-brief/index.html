@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light only">
+<title>Build Brief: Make Scenarios and a Separate Blog · Oxford Infrastructure Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#082045; --navy-500:#12386f; --ink:#0b1a30; --body:#3d4759;
+    --muted:#6b7688; --line:#e7eaf0; --bg:#ffffff; --bg-soft:#f6f8fb;
+    --accent:#2f6feb; --radius:16px;
+    --sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg-soft);color:var(--body);font-family:var(--sans);
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  img{max-width:100%;display:block}
+
+  .topbar{background:var(--navy);padding:18px 0}
+  .topbar .inner{max-width:860px;margin:0 auto;padding:0 28px;display:flex;
+    align-items:center;justify-content:space-between;gap:20px}
+  .topbar img{height:30px;width:auto}
+  .topbar a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;
+    font-weight:600;letter-spacing:.01em}
+  .topbar a:hover{color:#fff}
+
+  main{max-width:860px;margin:0 auto;padding:0 28px 96px}
+  .sheet{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:56px 60px;margin-top:40px;
+    box-shadow:0 10px 30px -12px rgba(8,32,69,.18), 0 4px 10px -6px rgba(8,32,69,.10)}
+
+  h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.2;letter-spacing:-.02em}
+  h1{font-size:clamp(30px,4.5vw,40px);margin:0 0 28px}
+  h2{font-size:25px;margin:52px 0 16px;padding-top:28px;border-top:1px solid var(--line)}
+  h3{font-size:19px;margin:34px 0 12px}
+  h4{font-size:17px;margin:26px 0 10px;color:var(--navy-500)}
+  p{margin:0 0 18px}
+  ul,ol{margin:0 0 18px;padding-left:24px}
+  li{margin-bottom:8px}
+  strong{color:var(--ink);font-weight:700}
+  hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+  blockquote{margin:24px 0;padding:4px 0 4px 22px;border-left:3px solid var(--accent);
+    color:var(--muted)}
+  code{background:var(--bg-soft);border:1px solid var(--line);border-radius:5px;
+    padding:2px 6px;font-size:14.5px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  pre{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;
+    padding:18px 20px;overflow-x:auto}
+  pre code{background:none;border:0;padding:0;font-size:14px}
+
+  .table-scroll{overflow-x:auto;margin:0 0 22px}
+  table{border-collapse:collapse;width:100%;font-size:15.5px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);
+    vertical-align:top}
+  th{background:var(--bg-soft);color:var(--ink);font-weight:700;white-space:nowrap}
+
+  .foot{max-width:860px;margin:0 auto;padding:0 28px 60px;color:var(--muted);font-size:14px}
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    .sheet{padding:32px 22px;margin-top:24px;border-radius:12px}
+    h2{font-size:22px}
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a href="../../"><img src="../../assets/oip-logo.png" alt="Oxford Infrastructure Partners"></a>
+    <a href="../../">Back to overview</a>
+  </div>
+</header>
+<main>
+  <article class="sheet">
+<h1>Build Brief: Make Scenarios and a Separate Blog</h1>
+<p><strong>Oxford Infrastructure Partners / Telia Towers</strong>
+2026-08-07. Companion to the content pipeline decision doc.</p>
+<hr />
+<h2>Part A: The two Make scenarios</h2>
+<p>You need two, not one. The first finds and drafts. The second distributes.</p>
+<h3>Scenario 1: Radar (runs once a day)</h3>
+<p>Make gives each scenario a single trigger, so don&rsquo;t try to hang six RSS triggers off one scenario. Use a schedule trigger and pull the feeds yourself.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Module</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Schedule</td>
+<td>Fires daily at 7am</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Google Sheets: Search Rows</td>
+<td>Reads your feed list, one row per feed URL plus a cluster label</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Iterator</td>
+<td>Splits into one bundle per feed</td>
+</tr>
+<tr>
+<td>4</td>
+<td>HTTP: Make a request</td>
+<td>GETs the feed</td>
+</tr>
+<tr>
+<td>5</td>
+<td>XML: Parse XML</td>
+<td>Turns it into fields</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Iterator</td>
+<td>Splits into one bundle per article</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Data Store: Search records</td>
+<td>Looks up the article URL to see if you&rsquo;ve handled it before</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Filter</td>
+<td>Stops anything already seen</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Filter</td>
+<td>Stops anything matching your blocked-entity list</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Anthropic Claude</td>
+<td>Scores relevance 1 to 5 and drafts both the blog post and the LinkedIn version</td>
+</tr>
+<tr>
+<td>11</td>
+<td>JSON: Parse JSON</td>
+<td>Splits the response into fields</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Filter</td>
+<td>Stops anything scoring under 4</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Google Sheets: Add a row</td>
+<td>Writes it to your review queue</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Data Store: Add a record</td>
+<td>Marks the URL as seen</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Aggregator, then Email</td>
+<td>Sends you one digest instead of fifteen emails</td>
+</tr>
+</tbody>
+</table></div>
+<p>Three things worth getting right:</p>
+<p><strong>Put both filters before the Claude call.</strong> Steps 8 and 9 come first because filters are free in Make and Claude calls are not. This also means the blocked-entity list is a genuine hard stop, since nothing sensitive ever reaches the drafting step.</p>
+<p><strong>Watch your operations budget.</strong> Make bills per module execution per bundle, and step 7 runs once for every article in every feed, so that&rsquo;s your biggest line. Six feeds at roughly twenty items each works out to about 150 to 200 operations per run, or around 5,000 a month, which sits comfortably inside the $9 Core plan. If you add feeds and the number climbs, the fix is fewer feeds or a tighter Google News query, not a bigger plan.</p>
+<p><strong>Ask Claude for JSON.</strong> Have it return one object with <code>score</code>, <code>blog_draft</code>, <code>linkedin_draft</code>, and <code>source_url</code> so step 11 can split it cleanly. If you ask for prose you&rsquo;ll spend an afternoon writing text parsers.</p>
+<h3>Scenario 2: Distribute (runs on a trigger)</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Module</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>RSS: Watch RSS feed items</td>
+<td>Watches your blog feed</td>
+</tr>
+<tr>
+<td>2</td>
+<td>LinkedIn: Create an Organization Post</td>
+<td>Posts to the company page</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Slack or Email</td>
+<td>Sends the personal-profile draft to whoever&rsquo;s posting it</td>
+</tr>
+</tbody>
+</table></div>
+<p>Make has its own LinkedIn module that posts to company pages, so you can skip Buffer and save the subscription. You connect the page through Make&rsquo;s already-approved LinkedIn app, which means you still don&rsquo;t need your own LinkedIn API access.</p>
+<p>Leave scenario 2 switched off for the first week. Run scenario 1, read what lands in the sheet, and tune the prompt until the drafts are worth publishing. Then turn on distribution.</p>
+<hr />
+<h2>Part B: The separate blog</h2>
+<h3>Can you attach it to the main domain?</h3>
+<p>Yes, on a subdomain. Not on a subdirectory.</p>
+<p><strong>A subdomain works.</strong> Something like <code>insights.oxfordinfrastructurepartners.com</code> points at GitHub Pages with a single CNAME record, and your main Squarespace site is untouched. Setup runs about twenty minutes plus DNS propagation:</p>
+<ol>
+<li>In Squarespace, go to <code>account.squarespace.com/domains</code>, pick the domain, open DNS Settings.</li>
+<li>Add one CNAME record. Host is <code>insights</code>, data is <code>yourusername.github.io</code>. Leave every existing record alone, because the apex still needs to point at Squarespace.</li>
+<li>In the GitHub repo, open Settings, then Pages, and enter <code>insights.oxfordinfrastructurepartners.com</code> as the custom domain. GitHub writes the CNAME file into the repo for you.</li>
+<li>Wait, then tick Enforce HTTPS. GitHub issues a free Let&rsquo;s Encrypt certificate and renews it automatically. The option can take up to 24 hours to appear, and DNS can take up to 48.</li>
+</ol>
+<p><strong>A subdirectory doesn&rsquo;t.</strong> You can&rsquo;t serve <code>oxfordinfrastructurepartners.com/insights</code> from GitHub Pages while Squarespace serves the rest, because Squarespace has no path-based routing or reverse proxy. Doing it anyway means putting Cloudflare in front of your entire site and proxying Squarespace through it, which Squarespace doesn&rsquo;t officially support and which puts your main site at risk to save one URL segment. Don&rsquo;t.</p>
+<h3>On the SEO point</h3>
+<p>You said you don&rsquo;t think you&rsquo;d get SEO from it, and that&rsquo;s worth correcting, because it changes the maths. A subdomain does get crawled, indexed, and ranked. Google treats it as connected to your main domain but keeps the signals somewhat separate, so a subdirectory would consolidate authority a little better. The gap is real but modest, and it&rsquo;s nothing like zero. If you&rsquo;re publishing two useful posts a week about tower and data center transactions, that content will rank for the long-tail terms whether it sits on a subdomain or not.</p>
+<h3>How publishing actually works</h3>
+<p>This is the part that makes the separate blog worth considering, because it turns your daily copy-paste into a single tap.</p>
+<p>Set up a Jekyll site in a GitHub repo. Blog posts are just markdown files in a <code>_posts</code> folder. Add a step to scenario 1 that writes the approved draft as a markdown file using Make&rsquo;s HTTP module against the GitHub REST API, specifically <code>PUT /repos/{owner}/{repo}/contents/{path}</code>. Make does have a GitHub app, but check which actions it exposes before you rely on it, because the HTTP module against the REST API definitely works and takes about ten minutes to wire up.</p>
+<p>Have Make commit to a <code>drafts</code> branch and open a pull request rather than committing straight to main. You then get a notification, read the draft on your phone, and tap merge to publish. GitHub rebuilds the site in about a minute. That&rsquo;s your approve-before-publish gate, and it&rsquo;s faster than the Squarespace paste by a wide margin.</p>
+<p>Jekyll also generates an RSS feed for free through the <code>jekyll-feed</code> plugin, which is what scenario 2 watches.</p>
+<h3>What you give up</h3>
+<p>The Squarespace editor. Anyone who wants to write or fix a post has to edit markdown, either in GitHub&rsquo;s web editor or locally. That&rsquo;s fine for you and probably fine for anyone technical, but it will block a colleague who just wants a normal text box. If that matters, add Decap CMS to the repo. It&rsquo;s free, it gives you a proper editing interface in the browser, and it commits to the same repo underneath.</p>
+<h3>Two notes on hosting</h3>
+<p>GitHub&rsquo;s terms say Pages isn&rsquo;t for running an online business or e-commerce or software as a service. A company insights blog is a normal use and isn&rsquo;t what that clause is aimed at, so you&rsquo;re fine. If you&rsquo;d rather have no ambiguity at all, Cloudflare Pages and Netlify both do the same job, both have free tiers, both take a custom domain, and neither has that restriction. The git workflow is identical, so you can switch later without rebuilding anything.</p>
+<h3>Linking it back to Squarespace</h3>
+<p>Add a nav item on the main site pointing at the subdomain, and match the blog&rsquo;s styling to the main site so the move doesn&rsquo;t feel like leaving. You can also drop an RSS block on the Squarespace homepage that pulls in the three most recent posts, which keeps fresh headlines on the main domain even though the posts live elsewhere.</p>
+<hr />
+<h2>What to do this week</h2>
+<p>Do these in order and stop when you run out of time. Each step is useful on its own.</p>
+<ol>
+<li>Build the feed list and the blocked-entity list in a Google Sheet. About an hour, and it&rsquo;s the input to everything else.</li>
+<li>Build scenario 1 and let it fill the review queue for a few days. Publish by hand into Squarespace while you read the output and tune the prompt.</li>
+<li>Once the drafts are good, decide on the blog. Staying on Squarespace costs you ten minutes a day forever. Moving to a subdomain costs you a day of setup and gives you the merge-to-publish workflow.</li>
+<li>Build scenario 2 last, whichever blog you land on, because both routes end in an RSS feed and the scenario is the same either way.</li>
+</ol>
+<p>The ordering matters because step 2 answers the question that decides step 3. If the drafts turn out to need heavy rewriting every time, the manual Squarespace paste costs you almost nothing extra and you should stay put. If they come out close to publishable, the merge-to-publish workflow is worth the move.</p>
+  </article>
+</main>
+<p class="foot">Internal working document. Oxford Infrastructure Partners.</p>
+</body>
+</html>

@@ -4,9 +4,11 @@
 CLAUDE.md
 AGENTS.md
 
-# Internal strategy and planning docs.
-content-pipeline-build-brief.md
-content-pipeline-decision-doc.md
+# Build tooling. Runs locally, not part of the published site.
+tools/
+
+# Source copy for index.html. The site is the published form of this doc,
+# so publishing it again as raw markdown would just duplicate the site.
 laser-light-communications-commercial-strategy.md
 
 # OS cruft

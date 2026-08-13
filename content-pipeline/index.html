@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light only">
+<title>Content Pipeline: Google Alerts to Squarespace to LinkedIn · Oxford Infrastructure Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#082045; --navy-500:#12386f; --ink:#0b1a30; --body:#3d4759;
+    --muted:#6b7688; --line:#e7eaf0; --bg:#ffffff; --bg-soft:#f6f8fb;
+    --accent:#2f6feb; --radius:16px;
+    --sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg-soft);color:var(--body);font-family:var(--sans);
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  img{max-width:100%;display:block}
+
+  .topbar{background:var(--navy);padding:18px 0}
+  .topbar .inner{max-width:860px;margin:0 auto;padding:0 28px;display:flex;
+    align-items:center;justify-content:space-between;gap:20px}
+  .topbar img{height:30px;width:auto}
+  .topbar a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;
+    font-weight:600;letter-spacing:.01em}
+  .topbar a:hover{color:#fff}
+
+  main{max-width:860px;margin:0 auto;padding:0 28px 96px}
+  .sheet{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:56px 60px;margin-top:40px;
+    box-shadow:0 10px 30px -12px rgba(8,32,69,.18), 0 4px 10px -6px rgba(8,32,69,.10)}
+
+  h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.2;letter-spacing:-.02em}
+  h1{font-size:clamp(30px,4.5vw,40px);margin:0 0 28px}
+  h2{font-size:25px;margin:52px 0 16px;padding-top:28px;border-top:1px solid var(--line)}
+  h3{font-size:19px;margin:34px 0 12px}
+  h4{font-size:17px;margin:26px 0 10px;color:var(--navy-500)}
+  p{margin:0 0 18px}
+  ul,ol{margin:0 0 18px;padding-left:24px}
+  li{margin-bottom:8px}
+  strong{color:var(--ink);font-weight:700}
+  hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+  blockquote{margin:24px 0;padding:4px 0 4px 22px;border-left:3px solid var(--accent);
+    color:var(--muted)}
+  code{background:var(--bg-soft);border:1px solid var(--line);border-radius:5px;
+    padding:2px 6px;font-size:14.5px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  pre{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;
+    padding:18px 20px;overflow-x:auto}
+  pre code{background:none;border:0;padding:0;font-size:14px}
+
+  .table-scroll{overflow-x:auto;margin:0 0 22px}
+  table{border-collapse:collapse;width:100%;font-size:15.5px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);
+    vertical-align:top}
+  th{background:var(--bg-soft);color:var(--ink);font-weight:700;white-space:nowrap}
+
+  .foot{max-width:860px;margin:0 auto;padding:0 28px 60px;color:var(--muted);font-size:14px}
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    .sheet{padding:32px 22px;margin-top:24px;border-radius:12px}
+    h2{font-size:22px}
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a href="../"><img src="../assets/oip-logo.png" alt="Oxford Infrastructure Partners"></a>
+    <a href="../">Back to overview</a>
+  </div>
+</header>
+<main>
+  <article class="sheet">
+<h1>Content Pipeline: Google Alerts to Squarespace to LinkedIn</h1>
+<p><strong>Decision doc — Oxford Infrastructure Partners / Telia Towers</strong>
+Prepared 2026-08-07</p>
+<hr />
+<h2>TL;DR</h2>
+<p>The pipeline you described is automatable at both ends but <strong>not in the middle</strong>. Squarespace has no public API for blog content and no Zapier action, so nothing can write a blog post into Squarespace from the outside. That is a hard wall, not a configuration problem.</p>
+<p>The good news: the wall lands exactly where you want a human anyway. Auto-publishing curated news commentary to a LinkedIn company page without review is the highest brand-risk part of this whole idea, so a forced approve-before-publish gate at the Squarespace step is a feature, not a tax.</p>
+<p><strong>Recommended stack:</strong> Make.com + Claude API + Squarespace RSS + Buffer, roughly <strong>$12 to $25/month</strong>, one human touch of about 10 minutes per day.</p>
+<hr />
+<h2>1. Hop-by-hop map</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Hop</th>
+<th>Automatable?</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keywords to alerts</td>
+<td>Yes</td>
+<td>Google Alerts RSS + Google News RSS</td>
+</tr>
+<tr>
+<td>Alerts to filtered, ranked shortlist</td>
+<td>Yes</td>
+<td>Make.com scenario, dedupe + relevance filter</td>
+</tr>
+<tr>
+<td>Shortlist to drafted post</td>
+<td>Yes</td>
+<td>Claude API step inside Make</td>
+</tr>
+<tr>
+<td>Draft into Squarespace</td>
+<td><strong>No</strong></td>
+<td>No API. Human paste, ~2 to 3 min/post</td>
+</tr>
+<tr>
+<td>Squarespace to LinkedIn company page</td>
+<td>Yes</td>
+<td>Squarespace blog RSS to Buffer or Make</td>
+</tr>
+<tr>
+<td>Squarespace to personal profiles</td>
+<td>Technically yes, <strong>advise no</strong></td>
+<td>See §5</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Hop 1: Google Alerts to RSS</h3>
+<p>Google Alerts has no official API, but the RSS delivery option still works as of 2026. In google.com/alerts, set &ldquo;Deliver to&rdquo; = RSS feed and copy the feed URL.</p>
+<p>Two cautions, and one upgrade worth making:</p>
+<ul>
+<li>Alerts RSS feeds are text-only (no images) and the URLs occasionally go stale when an alert is edited. Store them somewhere you can re-pull.</li>
+<li>Alert quality is genuinely mediocre for narrow B2B infrastructure terms. Expect noise.</li>
+<li><strong>Upgrade:</strong> use <strong>Google News RSS</strong> alongside Alerts. The format is <code>https://news.google.com/rss/search?q=YOUR+QUERY</code> and it accepts full search operators, so you can write far tighter queries (<code>"tower company" AND (divestment OR carve-out)</code>, <code>site:</code> filters, date windows). It is more reliable and more controllable than Alerts. Run both; Alerts catches the long tail, News RSS carries the precision.</li>
+</ul>
+<p>Suggested keyword clusters: tower cos and TowerCo transactions, data center and edge buildout, Telia / Telia Towers, your named competitors and partners, plus deal-flow terms (divestment, sale-leaseback, carve-out, fiber M&amp;A) in your target geographies.</p>
+<h3>Hop 2: The Squarespace wall</h3>
+<p>Confirmed across the Squarespace developer docs, the Zapier integration, and Squarespace&rsquo;s own forums:</p>
+<ul>
+<li>Squarespace&rsquo;s public APIs cover <strong>commerce only</strong>: orders, products, inventory, transactions, plus webhooks. There is no content, page, or blog write endpoint.</li>
+<li>The <strong>Zapier integration has exactly one trigger (form submission) and zero actions.</strong> You cannot create a Squarespace blog post from Zapier.</li>
+<li>There is <strong>no RSS import.</strong> Squarespace&rsquo;s RSS blocks <em>display</em> external feeds in a widget; they do not create native posts. Blog import only supports migrations from other blog platforms (WordPress, Blogger, Tumblr, etc.), not a live feed.</li>
+</ul>
+<p>Which leaves three honest options:</p>
+<ol>
+<li><strong>Human paste (recommended).</strong> AI writes the draft into a review queue; a person pastes and publishes. Squarespace&rsquo;s native post scheduler then handles timing.</li>
+<li><strong>Browser automation</strong> against the Squarespace editor. Do not do this. It is brittle against UI changes, and driving the editor with a script sits badly against Squarespace&rsquo;s terms. Not worth it for two posts a week.</li>
+<li><strong>Move the blog off Squarespace</strong> to an API-capable CMS (Ghost, WordPress, Webflow) on a subdomain such as <code>insights.oxfordinfrastructurepartners.com</code>. This unlocks genuine end-to-end automation. Covered as Option B in §3.</li>
+</ol>
+<h3>Hop 3: Squarespace to LinkedIn</h3>
+<p>This hop is easy and well-supported. Every Squarespace blog exposes an RSS feed at <code>https://yoursite.com/blog?format=rss</code> (append <code>?format=rss</code> after the page slug).</p>
+<p>Point Buffer or Make at that feed, and new posts fan out to the LinkedIn company page automatically.</p>
+<p><strong>On LinkedIn API approval, the key point:</strong> you almost certainly do not need it. Building direct against LinkedIn means the Community Management API, which requires a registered legal entity, a verified company page, and a two-tier app review that takes weeks and is frequently rejected. Using Buffer, Hootsuite, or Make instead means you post through <em>their</em> already-approved app. You just OAuth your page in. OIP would likely qualify for direct access eventually, but at this volume it buys you nothing.</p>
+<hr />
+<h2>2. Where the AI step goes</h2>
+<p>Put Claude <strong>between the filter and the review queue</strong>, and give it three jobs in one call:</p>
+<ol>
+<li><strong>Score relevance</strong> 1 to 5 against a short OIP/Telia Towers context blurb. Anything below 4 never reaches a human.</li>
+<li><strong>Draft the blog post</strong>: 120 to 180 words, house voice, source linked and attributed, ending on an OIP point of view rather than a summary.</li>
+<li><strong>Draft the LinkedIn variant</strong>: shorter, no clickbait, with the blog permalink.</li>
+</ol>
+<p>The relevance score is the part that actually saves you time. Raw Alerts volume is high and low-signal; a scoring gate is what turns 40 items a day into 3 worth reading.</p>
+<p>One prompt-level rule worth hard-coding: <strong>never reproduce more than a short quoted phrase from the source article.</strong> See §5.</p>
+<hr />
+<h2>3. Two architectures</h2>
+<h3>Option A — Keep Squarespace, automate around it <em>(recommended)</em></h3>
+<pre><code>Google Alerts RSS  ─┐
+Google News RSS    ─┴─→ Make.com ──→ dedupe ──→ Claude (score + draft)
+                                                      │
+                                          score &gt;= 4  ▼
+                                        Google Sheet review queue
+                                          + morning digest email
+                                                      │
+                                          HUMAN (~10 min/day)
+                                                      ▼
+                                          Squarespace blog post
+                                                      │
+                                          blog?format=rss
+                                                      ▼
+                                     Buffer ──→ LinkedIn company page
+                                                      │
+                                                      └→ Slack/email nudge
+                                                         to personal profiles
+</code></pre>
+<p><strong>Pros:</strong> brand stays on one domain, all SEO equity on the main site, human gate is built in, cheap, standable this week.
+<strong>Cons:</strong> the daily 10 minutes never goes away.</p>
+<h3>Option B — Headless blog on a subdomain</h3>
+<p>Replace the Squarespace blog with Ghost (from ~$9/mo) or WordPress, both of which have real content APIs. Make writes the post as a <strong>draft</strong>, a human hits publish from their phone, and the rest is identical.</p>
+<p><strong>Pros:</strong> true end-to-end automation, publish becomes a one-tap approval rather than a copy-paste job, and you get a proper content API for anything you build later.
+<strong>Cons:</strong> a second property to design and maintain, SEO split across two domains, and a migration of any existing posts. Realistically a 2 to 4 week project, not a this-week project.</p>
+<p><strong>Recommendation:</strong> Start with A. Revisit B only if you are publishing more than about 4 posts a week, at which point the manual paste starts to genuinely hurt. Below that cadence, B is not worth the fragmentation.</p>
+<hr />
+<h2>4. Cost and setup</h2>
+<h3>Monthly cost, Option A</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Make.com Core (10,000 ops)</td>
+<td>$9</td>
+</tr>
+<tr>
+<td>Anthropic API (Claude, ~50 drafts/mo)</td>
+<td>$2 to $5</td>
+</tr>
+<tr>
+<td>Buffer (1 to 3 channels)</td>
+<td>$0 (free tier) to $18</td>
+</tr>
+<tr>
+<td>Google Alerts / News RSS</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>Squarespace</td>
+<td>already paid</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>~$12 to $32/mo</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>On Make vs Zapier:</strong> use Make. Zapier bills per <em>action step</em>, so a 6-step workflow burns 6 tasks per run and Zapier Professional starts around $20/mo for 750 tasks. Make bills per operation on a far cheaper curve ($9 for 10,000) and handles multi-step branching better. For this workload Make is roughly 3 to 4x cheaper. Zapier only wins if you need an integration Make lacks, which is not the case here.</p>
+<h3>Setup order</h3>
+<ol>
+<li><strong>Build the keyword set</strong> (60 min). Cluster into: transactions, competitors, partners, Telia/Telia Towers brand, technology, geography. Write the Google News RSS query strings.</li>
+<li><strong>Create the feeds</strong> (30 min). Google Alerts with delivery = RSS, plus the News RSS URLs. Drop all URLs in a sheet.</li>
+<li><strong>Make scenario 1 &ldquo;Radar&rdquo;</strong> (2 to 3 hrs). Watch RSS to Data Store dedupe by URL to Claude scoring/drafting call to filter <code>score &gt;= 4</code> to append row to Google Sheet to daily digest email. Schedule 1x/day, 7am.</li>
+<li><strong>Write the Claude prompt</strong> (60 to 90 min). This is the piece that determines whether the output is usable. Include an OIP positioning blurb, 2 to 3 example posts in house voice, the relevance rubric, and the quoting rule. Budget a week of tuning on live output.</li>
+<li><strong>Squarespace RSS check</strong> (10 min). Confirm <code>yoursite.com/blog?format=rss</code> resolves and carries what you expect.</li>
+<li><strong>Buffer to LinkedIn</strong> (30 min). Connect the company page, add the Squarespace feed, set the queue. <strong>Turn on Buffer&rsquo;s approval/draft mode for the first two weeks</strong> rather than direct publish.</li>
+<li><strong>Personal profile lane</strong> (30 min). Make posts the drafted variant to a Slack channel or email so individuals can post in their own words.</li>
+<li><strong>Review after 2 weeks.</strong> Tune the relevance threshold, then decide whether to drop the Buffer approval step.</li>
+</ol>
+<p>Total build: roughly one focused day, plus prompt tuning.</p>
+<hr />
+<h2>5. Compliance and brand-safety risks</h2>
+<p>These are real and worth reading before you switch anything to full auto.</p>
+<p><strong>Copyright.</strong> LinkedIn scans company pages more aggressively than personal accounts and removes flagged content without warning. Sharing news with a link and attribution plus your own commentary is fine. Reproducing article text is not. Hard rules for the prompt: no more than a short quoted phrase, always attribute and link the source, never lift the publisher&rsquo;s images.</p>
+<p><strong>LinkedIn ToS.</strong> LinkedIn&rsquo;s terms are aimed at automation that <em>mimics human action</em>. Scheduling curated content through an approved partner (Buffer, Hootsuite, Make) is explicitly fine. Fully unattended posting with no human in the loop sits closer to the line, and posting identical text simultaneously across several personal profiles sits on the wrong side of it. This is the main reason to keep personal profiles as <strong>draft-and-nudge, not auto-post.</strong> It also happens to perform better; identical cross-posted text is transparent to readers and gets suppressed.</p>
+<p><strong>The commercial risk nobody flags.</strong> You are an infrastructure investor. Auto-publishing commentary on live transactions can read as market signalling, imply a position you do not hold, or comment on a counterparty mid-negotiation. An AI drafting from a headline has no idea which names are sensitive. <strong>Mitigation: maintain a blocklist of entities that never auto-draft</strong>, covering active targets, counterparties, and anything under NDA, and enforce it as a hard filter in Make <em>before</em> the Claude step. This is the single most important control in the design.</p>
+<p><strong>Accuracy.</strong> AI drafting from a headline and snippet will occasionally invent detail. The human gate catches this, which is another argument against removing it.</p>
+<p><strong>Corrections.</strong> Agree in advance who can pull a LinkedIn post and how fast. A wrong post about a named counterparty needs a response measured in minutes.</p>
+<hr />
+<h2>6. Minimum viable version, standable this week</h2>
+<p>Strip out Make entirely for v0. You can have the value in about two hours:</p>
+<ol>
+<li><strong>Google Alerts, delivery = email</strong>, into a dedicated Gmail label or folder. (15 min)</li>
+<li><strong>Add 4 to 6 Google News RSS queries</strong> to any reader. (20 min)</li>
+<li><strong>Once a day, paste the interesting headlines into Claude</strong> with a saved prompt containing your positioning blurb and voice examples. Get back a blog draft and a LinkedIn variant. (10 min/day)</li>
+<li><strong>Paste into Squarespace, publish.</strong> (3 min)</li>
+<li><strong>Buffer free tier</strong>, connect the LinkedIn company page, add <code>yoursite.com/blog?format=rss</code>. This one step is genuinely automatic from day one. (20 min)</li>
+</ol>
+<p><strong>Cost: $0.</strong> That gets hops 1 and 3 working immediately and proves whether the content is any good before you spend a day building Make scenarios.</p>
+<p>The honest sequencing argument: the automation is the easy part. Whether AI-drafted commentary on tower and data center news actually sounds like OIP is the open question, and the MVP answers it for free. Build the Make layer in week 2, once the prompt is earning its keep.</p>
+<hr />
+<h2>Summary of what can and cannot be automated</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Fully automatic</th>
+<th>Human required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monitoring keywords</td>
+<td>Publishing to Squarespace (no API)</td>
+</tr>
+<tr>
+<td>Filtering and deduping</td>
+<td>Approving draft accuracy and tone</td>
+</tr>
+<tr>
+<td>Relevance scoring</td>
+<td>Sensitive-entity judgement calls</td>
+</tr>
+<tr>
+<td>Drafting blog + LinkedIn copy</td>
+<td>Personal profile posts (by choice)</td>
+</tr>
+<tr>
+<td>Squarespace to LinkedIn company page</td>
+<td></td>
+</tr>
+<tr>
+<td>Scheduling and queueing</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>Sources</h2>
+<ul>
+<li><a href="https://developers.squarespace.com/">Squarespace Developer Platform</a> — commerce APIs only, no content API</li>
+<li><a href="https://support.squarespace.com/hc/en-us/articles/215761717-Using-RSS-feeds">Squarespace: Using RSS feeds</a> — <code>?format=rss</code></li>
+<li><a href="https://forum.squarespace.com/topic/290491-how-to-programatically-publish-new-posts-on-square-space-blog-any-restful-api-for-blog-creation/">Squarespace Forum: programmatic blog publishing</a></li>
+<li><a href="https://forum.squarespace.com/topic/247971-do-squarespace-provide-and-api-for-creating-and-updating-blog-post/">Squarespace Forum: API for creating/updating blog posts</a></li>
+<li><a href="https://support.squarespace.com/hc/en-us/articles/360000641507-Adding-form-integrations-with-Zapier">Adding form integrations with Zapier (Squarespace)</a> — form trigger only</li>
+<li><a href="https://developer.linkedin.com/product-catalog/marketing/community-management-api">LinkedIn Community Management API</a></li>
+<li><a href="https://learn.microsoft.com/en-us/linkedin/marketing/community-management/community-management-overview?view=li-lms-2026-04">Community Management API overview (Microsoft Learn)</a></li>
+<li><a href="https://www.linkedin.com/legal/user-agreement">LinkedIn User Agreement</a></li>
+<li><a href="https://aeroleads.com/blog/legal-linkedin-company-pages-whats-allowed-whats-not/">The Legal Guide to LinkedIn Company Pages</a></li>
+<li><a href="https://www.wprssaggregator.com/google-news-rss-feed/">Google News RSS feed URLs</a></li>
+<li><a href="https://www.make.com/en/integrations/linkedin/rss">Make: LinkedIn and RSS integration</a></li>
+<li><a href="https://www.nocode.mba/articles/zapier-pricing-2026">Zapier Pricing 2026</a></li>
+<li><a href="https://createwithsquarespace.com/how-to-automatically-post-your-squarespace-blogs-to-social-media/">Auto-posting Squarespace blogs to social media</a></li>
+</ul>
+  </article>
+</main>
+<p class="foot">Internal working document. Oxford Infrastructure Partners.</p>
+</body>
+</html>
