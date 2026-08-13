@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Global Capacity Brief | Laser Light Communications</title>
+<meta name="description" content="What you buy, on what terms, and how fast you are live. A short capacity brief from Laser Light Communications.">
+<link rel="icon" href="https://www.laserlightcomms.com/wp-content/uploads/2025/04/cropped-Favicon-192x192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#000A11;
+    --teal:#00617F;
+    --cyan:#27AAD3;
+    --white:#ffffff;
+    --body:#333333;
+    --line:rgba(255,255,255,.16);
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--white);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    font-size:16px;
+    line-height:24px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;height:auto;display:block;}
+  a{color:var(--cyan);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  section{padding:70px 0;position:relative;}
+
+  /* Signature curved divider, replicated from the live site */
+  .shape{position:absolute;left:0;width:100%;line-height:0;overflow:hidden;}
+  .shape.bottom{bottom:-1px;}
+  .shape svg{display:block;width:calc(100% + 2px);height:70px;position:relative;left:-1px;}
+
+  /* Type */
+  .eyebrow{
+    font-family:'Roboto',sans-serif;font-size:16px;font-weight:400;
+    text-transform:uppercase;letter-spacing:2px;color:var(--cyan);
+    margin:0 0 14px;
+  }
+  .eyebrow-lato{
+    font-family:'Lato',sans-serif;font-size:18px;font-weight:300;
+    text-transform:uppercase;letter-spacing:2.4px;color:var(--white);
+    margin:0 0 16px;
+  }
+  h1{
+    font-family:'Roboto',sans-serif;font-size:46px;line-height:1.15;
+    font-weight:500;color:var(--white);margin:0 0 20px;letter-spacing:normal;
+  }
+  h2{
+    font-family:'Roboto',sans-serif;font-size:33px;line-height:1.25;
+    font-weight:700;text-transform:capitalize;letter-spacing:.5px;
+    color:var(--white);margin:0 0 18px;
+  }
+  h3{
+    font-family:'Roboto',sans-serif;font-size:24px;line-height:1.3;
+    font-weight:700;color:var(--white);margin:0 0 12px;
+  }
+  h4{
+    font-family:'Roboto',sans-serif;font-size:20px;line-height:1.35;
+    font-weight:600;color:var(--white);margin:0 0 10px;
+  }
+  p{margin:0 0 18px;color:rgba(255,255,255,.82);font-size:17px;line-height:28px;}
+  .lead{font-size:19px;line-height:31px;color:rgba(255,255,255,.9);}
+  .quiet{color:rgba(255,255,255,.62);font-size:15px;line-height:25px;}
+  .center{text-align:center;}
+  .rule{height:1px;background:var(--line);border:0;margin:0;}
+
+  /* Buttons, pill 45px with 2px white border, from the live site */
+  .btn{
+    display:inline-block;font-family:'Roboto',sans-serif;font-size:21px;
+    font-weight:500;text-transform:capitalize;color:var(--white);
+    background:transparent;border:2px solid var(--white);border-radius:45px;
+    padding:15px 40px;text-decoration:none;cursor:pointer;
+    transition:background .2s ease,color .2s ease;
+  }
+  .btn:hover{background:var(--white);color:var(--ink);}
+  .btn-solid{background:var(--cyan);border-color:var(--cyan);}
+  .btn-solid:hover{background:var(--white);border-color:var(--white);color:var(--ink);}
+  .btn-block{width:100%;text-align:center;font-size:19px;padding:16px 24px;}
+
+  /* Header */
+  header.site{padding:26px 0;border-bottom:1px solid var(--line);}
+  .headrow{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .wordmark{font-family:'Roboto',sans-serif;font-weight:700;font-size:22px;letter-spacing:3px;text-transform:uppercase;color:var(--white);line-height:1.1;}
+  .wordmark span{display:block;font-family:'Lato',sans-serif;font-weight:300;font-size:11px;letter-spacing:2.4px;color:var(--cyan);margin-top:6px;}
+  .headnote{font-family:'Lato',sans-serif;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:rgba(255,255,255,.6);}
+
+  /* Hero */
+  .hero{padding:80px 0 120px;background:var(--ink);}
+  .herogrid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;}
+  .hero-claim{
+    font-family:'Roboto',sans-serif;font-size:20px;font-weight:600;
+    color:var(--cyan);margin:26px 0 0;line-height:1.4;
+  }
+  .ticks{list-style:none;margin:26px 0 0;padding:0;}
+  .ticks li{position:relative;padding-left:30px;margin-bottom:12px;color:rgba(255,255,255,.85);font-size:16px;line-height:26px;}
+  .ticks li:before{
+    content:"";position:absolute;left:0;top:9px;width:10px;height:10px;
+    background:var(--cyan);border-radius:50%;
+  }
+
+  /* Form card */
+  .card{
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:32px;
+  }
+  .card h3{margin-bottom:6px;font-size:22px;}
+  .card .quiet{margin-bottom:22px;}
+  .field{margin-bottom:16px;}
+  .field label{
+    display:block;font-family:'Roboto',sans-serif;font-size:12px;font-weight:500;
+    letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.72);
+    margin-bottom:7px;
+  }
+  .field input,.field select{
+    width:100%;padding:13px 14px;font-size:16px;font-family:inherit;
+    color:var(--white);background:rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.24);border-radius:6px;outline:none;
+  }
+  .field input::placeholder{color:rgba(255,255,255,.38);}
+  .field input:focus,.field select:focus{border-color:var(--cyan);}
+  .field select option{background:var(--ink);color:var(--white);}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .two .field{margin-bottom:0;}
+  .privacy{margin:16px 0 0;font-size:13px;line-height:21px;color:rgba(255,255,255,.55);}
+
+  /* Credibility strip */
+  .strip{padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);}
+  .strip .wrap{display:flex;flex-wrap:wrap;gap:18px 44px;align-items:center;justify-content:center;}
+  .strip .item{font-family:'Lato',sans-serif;font-size:13px;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.66);text-align:center;}
+  .strip .item b{display:block;font-family:'Roboto',sans-serif;font-weight:500;font-size:15px;letter-spacing:.5px;text-transform:none;color:var(--white);margin-top:5px;}
+
+  /* Grids */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:36px;}
+  .tile{border-top:2px solid var(--cyan);padding-top:22px;}
+  .tile p{font-size:16px;line-height:26px;margin-bottom:0;}
+  .panel{
+    background:rgba(255,255,255,.045);border:1px solid var(--line);
+    border-radius:14px;padding:34px;
+  }
+  .panel .eyebrow{font-size:14px;}
+
+  /* Segments */
+  .segs{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .segs li{
+    border:1px solid var(--line);border-radius:45px;padding:12px 20px;
+    text-align:center;font-size:14px;line-height:20px;color:rgba(255,255,255,.85);
+  }
+
+  /* Gradient band, from the live site */
+  .band{background:linear-gradient(var(--ink) 0%,var(--teal) 100%);padding:100px 15px 110px;}
+
+  /* Contents list */
+  .contents{list-style:none;margin:0;padding:0;counter-reset:c;}
+  .contents li{
+    counter-increment:c;position:relative;padding:20px 0 20px 62px;
+    border-bottom:1px solid var(--line);
+  }
+  .contents li:last-child{border-bottom:0;}
+  .contents li:before{
+    content:"0" counter(c);position:absolute;left:0;top:20px;
+    font-family:'Roboto',sans-serif;font-weight:700;font-size:18px;color:var(--cyan);
+    letter-spacing:1px;
+  }
+  .contents b{display:block;font-family:'Roboto',sans-serif;font-weight:600;font-size:18px;color:var(--white);margin-bottom:5px;}
+  .contents span{color:rgba(255,255,255,.72);font-size:16px;line-height:25px;}
+
+  /* Placeholder block, for the operator to complete */
+  .placeholder{
+    border:1px dashed rgba(39,170,211,.6);border-radius:14px;padding:28px;
+    background:rgba(39,170,211,.05);
+  }
+  .placeholder .tag{
+    display:inline-block;font-family:'Roboto',sans-serif;font-size:11px;font-weight:700;
+    letter-spacing:1.6px;text-transform:uppercase;color:var(--ink);background:var(--cyan);
+    border-radius:3px;padding:4px 9px;margin-bottom:14px;
+  }
+  .placeholder p{margin-bottom:0;color:rgba(255,255,255,.75);font-size:16px;line-height:26px;}
+
+  /* Authority stats */
+  .offices{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:34px;}
+  .office{border-left:2px solid var(--cyan);padding-left:20px;}
+  .office b{display:block;font-family:'Roboto',sans-serif;font-weight:600;font-size:15px;letter-spacing:.6px;color:var(--white);margin-bottom:8px;}
+  .office span{color:rgba(255,255,255,.66);font-size:14px;line-height:23px;display:block;}
+
+  /* Footer */
+  footer.site{padding:56px 0 44px;border-top:1px solid var(--line);}
+  footer.site p{font-size:14px;line-height:23px;color:rgba(255,255,255,.6);}
+  .foot-mark{font-family:'Roboto',sans-serif;font-weight:700;font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--white);margin-bottom:14px;}
+  .copyright{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);font-size:13px;color:rgba(255,255,255,.45);}
+
+  @media (max-width:980px){
+    .herogrid{grid-template-columns:1fr;gap:40px;}
+    .grid4{grid-template-columns:repeat(2,1fr);}
+    .segs{grid-template-columns:repeat(2,1fr);}
+    .offices{grid-template-columns:1fr;}
+  }
+  @media (max-width:720px){
+    h1{font-size:34px;}
+    h2{font-size:27px;}
+    h3{font-size:21px;}
+    section{padding:56px 0;}
+    .hero{padding:56px 0 90px;}
+    .band{padding:70px 15px 76px;}
+    .grid3,.grid2,.grid4{grid-template-columns:1fr;gap:28px;}
+    .segs{grid-template-columns:1fr;}
+    .card,.panel{padding:24px;}
+    .two{grid-template-columns:1fr;gap:16px;}
+    .two .field{margin-bottom:16px;}
+    .btn{font-size:18px;padding:14px 30px;}
+    .shape svg{height:44px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap headrow">
+    <div class="wordmark">Laser Light<span>The Power Of Light.&trade;</span></div>
+    <div class="headnote">Global Data Distribution</div>
+  </div>
+</header>
+
+<!-- HERO + CAPTURE -->
+<section class="hero">
+  <div class="wrap">
+    <div class="herogrid">
+      <div>
+        <p class="eyebrow">Laser Light Services</p>
+        <h1>The Global Capacity Brief</h1>
+        <p class="lead">What you buy, on what terms, and how quickly you are live. It's a short brief for the people who decide how their organization moves large volumes of data.</p>
+        <p class="hero-claim">Doing for networking what cloud did for computing.</p>
+        <ul class="ticks">
+          <li>Capacity on a subscription and on demand basis, so cost aligns with demand for CSPs, enterprises and hyperscalers</li>
+          <li>Software, fiber and satellites brought together onto a single service, always on platform</li>
+          <li>Self provisioning, so network operators can turn up connectivity in minutes</li>
+          <li>Written for network, infrastructure and procurement teams</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Get The Capacity Brief</h3>
+        <p class="quiet">Tell us where to send it and we'll email the brief to you.</p>
+        <form action="#" method="post" novalidate>
+          <div class="two">
+            <div class="field">
+              <label for="fname">First Name</label>
+              <input id="fname" name="first_name" type="text" autocomplete="given-name" placeholder="First name" required>
+            </div>
+            <div class="field">
+              <label for="lname">Last Name</label>
+              <input id="lname" name="last_name" type="text" autocomplete="family-name" placeholder="Last name" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" autocomplete="organization" placeholder="Organisation name" required>
+          </div>
+          <div class="field">
+            <label for="email">Work Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required>
+          </div>
+          <div class="field">
+            <label for="profile">Which Best Describes You</label>
+            <select id="profile" name="profile" required>
+              <option value="" selected disabled>Select one</option>
+              <option>Service Provider</option>
+              <option>Cloud Provider</option>
+              <option>Fortune 1000 Enterprise</option>
+              <option>Content Distribution Network</option>
+              <option>Financial Institution</option>
+              <option>Government</option>
+              <option>Smart City</option>
+              <option>CSP Servicing Disaggregated Customers</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <button class="btn btn-solid btn-block" type="submit">Get The Capacity Brief</button>
+          <p class="privacy">We use these details only to send you the capacity brief and to reply to your enquiry. We don't sell or share them, and we won't add you to a general mailing list. Ask us at any time and we'll delete them.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="shape bottom" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,.03)" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z"/></svg>
+  </div>
+</section>
+
+<!-- CREDIBILITY STRIP -->
+<div class="strip">
+  <div class="wrap">
+    <div class="item">United States<b>Reston, Virginia</b></div>
+    <div class="item">United Kingdom<b>St James&rsquo;s, London</b></div>
+    <div class="item">Australia<b>Melbourne, Victoria</b></div>
+    <div class="item">Edge And Aggregation Node Partner<b>Digital Parks Africa</b></div>
+    <div class="item">Global AI Bureau<b>Vincent Perez</b></div>
+  </div>
+</div>
+
+<!-- PROBLEM / CONTEXT -->
+<section>
+  <div class="wrap">
+    <div class="grid2">
+      <div>
+        <p class="eyebrow">Meeting The Market&rsquo;s Need</p>
+        <h2>How Most Organizations Still Buy Network Capacity</h2>
+        <p>You can turn compute up and down in an afternoon, and you pay for storage by the volume you actually use, but the network underneath both is usually still bought years ahead of the demand it carries.</p>
+        <p>That means committing to capacity before you know what you need, waiting on a build cycle every time that changes, and paying all year for the headroom that covers your busiest week.</p>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">A Better Way To Distribute Data At Scale</p>
+        <h3>On Demand. Elastic. Cost Effective.</h3>
+        <p>Laser Light offers an elastic, global data distribution platform, automated, agile, secure. A convergence of software, fiber and satellites onto a single service, always on platform.</p>
+        <p class="quiet" style="margin-bottom:0">The capacity brief sets out how that platform is bought, what's included, and how a service gets turned up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SOLUTION / THE PLATFORM -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow center">Global Data Platform</p>
+    <h2 class="center">The Laser Light Multi-Domain Global Data Platform&trade;</h2>
+    <p class="lead center" style="max-width:760px;margin:0 auto 46px">Delivering first of a kind 21st century data distribution services across four parts of one platform.</p>
+    <div class="grid4">
+      <div class="tile">
+        <h4>End-to-End Software Automation</h4>
+        <p>A fully automated network operating system, so services are set up and changed by software.</p>
+      </div>
+      <div class="tile">
+        <h4>Global Greenfield Terrestrial And Subsea Optical Fiber Network</h4>
+        <p>Optical fiber built new across land and sea, owned and operated by Laser Light.</p>
+      </div>
+      <div class="tile">
+        <h4>Optical Laser Satellite Constellation</h4>
+        <p>Optical satellites that carry traffic to places the terrestrial and subsea routes don&rsquo;t reach.</p>
+      </div>
+      <div class="tile">
+        <h4>Simple And Transparent On-Demand User Experience</h4>
+        <p>You see what&rsquo;s available, you provision what you need, and you know what it costs before you commit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW THE NETWORK BEHAVES -->
+<section style="background:rgba(255,255,255,.025);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <p class="eyebrow">The Laser Light Global Network</p>
+    <h2>What The Network Does For You</h2>
+    <div class="grid3" style="margin-top:34px">
+      <div class="tile">
+        <h4>Subscription And On-Demand</h4>
+        <p>Aligns cost with demand for CSPs, enterprises and hyperscalers.</p>
+      </div>
+      <div class="tile">
+        <h4>Real-Time AI Automation</h4>
+        <p>Fully automated NOS delivers best real-time performance while AI optimizes routes and service orchestration against specified KPIs.</p>
+      </div>
+      <div class="tile">
+        <h4>Massive Capacity</h4>
+        <p>Large global pool of capacity absorbs and load balances traffic peaks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Laser Light Services</p>
+    <h2>Our Services Leverage A Global All-Optical Elastic Network</h2>
+    <div class="grid2" style="margin-top:36px">
+      <div class="panel">
+        <h3>Data Transport as a Service</h3>
+        <p>By leveraging a global, all-optical elastic network, operations managers can self-provision where, when and how much data they need to transfer only paying for the volume they transport.</p>
+        <p class="quiet" style="margin-bottom:0">It&rsquo;s a cloud usage model for a high-speed global network.</p>
+      </div>
+      <div class="panel">
+        <h3>Network on Demand</h3>
+        <p>By leveraging a global greenfield, software defined all-optical network, network operators are able to significantly increase on-demand connectivity, self-provisioned in minutes.</p>
+        <p class="quiet" style="margin-bottom:0">It&rsquo;s bringing the characteristics of cloud to a high-speed global network.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- WHO IT IS FOR -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Customer Profiles</p>
+    <h2>Solving Complex Connectivity Challenges For Organizations Around The World</h2>
+    <ul class="segs">
+      <li>Service Providers</li>
+      <li>Fortune 1000 Enterprises</li>
+      <li>Content Distribution Networks</li>
+      <li>Financial Institutions</li>
+      <li>Government</li>
+      <li>Cloud Providers</li>
+      <li>Smart Cities</li>
+      <li>CSPs Servicing Disaggregated Customers</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section style="background:rgba(255,255,255,.025);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="grid2">
+      <div>
+        <p class="eyebrow">Newsroom</p>
+        <h2>Recent Announcements</h2>
+        <ul class="contents" style="margin-top:22px">
+          <li><b>Global AI Bureau</b><span>Laser Light names Vincent Perez to lead the Global AI Bureau, advancing the Einstein-Standard AI Corridor. Announced 15 July 2026.</span></li>
+          <li><b>Landmark Edge And Network Aggregation Node</b><span>Laser Light Africa selects Digital Parks Africa for a landmark edge and network aggregation node. Announced 12 November 2025.</span></li>
+          <li><b>AI Corridors And Africa&rsquo;s Digital Infrastructure Future</b><span>The Laser Light Africa perspective on AI corridors and the continent&rsquo;s digital infrastructure. Published 23 June 2026.</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">Customer Proof</p>
+        <h2>Customer Quotes</h2>
+        <div class="placeholder" style="margin-top:22px">
+          <span class="tag">Placeholder, to be completed</span>
+          <p>There are no customer testimonials published on laserlightcomms.com, so nothing has been written here. Add two or three approved customer quotes, each with a name, role and organization, or replace this block with a reference deployment you can talk about publicly. Nothing here should go live until the customer has confirmed it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffffff">Inside The Brief</p>
+    <h2>What You Receive After The Form</h2>
+    <p class="lead" style="max-width:720px">A short commercial document, written for the person making the decision and short enough to forward to the people who approve it.</p>
+    <ul class="contents" style="margin-top:30px">
+      <li><b>What You Are Buying</b><span>Capacity described as a service, with the four parts of the platform set out in plain terms and what each one does.</span></li>
+      <li><b>How It Is Bought</b><span>The subscription and on-demand model, how commitment is structured, and how cost tracks the volume you move.</span></li>
+      <li><b>Provisioning And Onboarding</b><span>How self-provisioning works, what your team controls directly, and how a service gets turned up.</span></li>
+      <li><b>Where The Network Reaches</b><span>How the terrestrial, subsea and optical satellite routes combine to reach the places you need.</span></li>
+      <li><b>How Performance Is Managed</b><span>How the automated NOS and AI driven orchestration optimize routes and service against the KPIs you specify.</span></li>
+      <li><b>The Next Step</b><span>What happens after you read it, and what we need from you to make the first call useful.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- AUTHORITY -->
+<section>
+  <div class="wrap">
+    <div class="grid2">
+      <div>
+        <p class="eyebrow">About Laser Light</p>
+        <h2>The Power Of Light.&trade;</h2>
+        <p>Laser Light Communications offers an elastic, global data distribution platform, automated, agile, secure. A convergence of software, fiber and satellites onto a single service, always on platform, built to transform the way high volume data communications are distributed, globally.</p>
+        <p class="quiet" style="margin-bottom:0">The company operates through Laser Light Communications Inc in the United States, Laser Light Global Ltd in the United Kingdom, and The HALO Network Company Pty Ltd in Australia.</p>
+      </div>
+      <div>
+        <div class="offices">
+          <div class="office">
+            <b>Laser Light Communications Inc</b>
+            <span>1818 Library Street, Suite 500</span>
+            <span>Reston, VA 20190</span>
+            <span>571.346.7623</span>
+          </div>
+          <div class="office">
+            <b>Laser Light Global Ltd</b>
+            <span>The Clubhouse, St James&rsquo;s</span>
+            <span>8 St James&rsquo;s Square, London SW1Y 4JU</span>
+            <span>+44 (0) 203 488 7138</span>
+          </div>
+          <div class="office">
+            <b>The HALO Network Company Pty Ltd</b>
+            <span>Level 7, 330 Collins Street</span>
+            <span>Melbourne, Victoria 3000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section style="background:rgba(255,255,255,.03);border-top:1px solid var(--line);">
+  <div class="wrap center">
+    <p class="eyebrow-lato">Let&rsquo;s Get Connected.</p>
+    <h2>Transform The Way High Volume Data Communications Are Distributed, Globally.</h2>
+    <p class="lead" style="max-width:640px;margin:0 auto 34px">Read the brief first, and if it fits how your organization buys, we&rsquo;ll set up a call.</p>
+    <a class="btn" href="#fname">Get The Capacity Brief</a>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-mark">Laser Light</div>
+    <p style="max-width:620px">Laser Light offers an elastic, global data distribution platform, automated, agile, secure. A convergence of software, fiber and satellites onto a single service, always on platform.</p>
+    <p class="copyright">&copy; 2026 Laser Light Communications. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Internal working files. Not for the public site.
+.claude/
+.agents/
+CLAUDE.md
+AGENTS.md
+
+# Internal strategy and planning docs.
+content-pipeline-build-brief.md
+content-pipeline-decision-doc.md
+laser-light-communications-commercial-strategy.md
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
