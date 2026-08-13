@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#061a3a">
+<title>From technical proof to repeatable infrastructure pipeline</title>
+<style>
+:root{--navy:#061a3a;--blue:#2f6feb;--white:#fff;--muted:#a9bcd8}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--navy);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit}
+.deck{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#12386f 0,#061a3a 58%,#020814 100%)}
+.stage{position:relative;width:min(100vw,177.7778vh);height:min(56.25vw,100vh);overflow:hidden;background:#061a3a;box-shadow:0 35px 90px rgba(0,0,0,.45)}
+.slide{position:absolute;inset:0;margin:0;opacity:0;transform:translateX(2.5%);transition:opacity .55s ease,transform .7s cubic-bezier(.2,.75,.2,1);pointer-events:none}
+.slide.active{opacity:1;transform:none;pointer-events:auto;z-index:2}
+.slide.before{transform:translateX(-2.5%)}
+.slide img{width:100%;height:100%;display:block;object-fit:contain;background:#061a3a;user-select:none;-webkit-user-drag:none}
+.controls{position:fixed;z-index:20;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:7px 9px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(2,8,20,.68);backdrop-filter:blur(16px);opacity:.24;transition:opacity .25s ease}
+body:hover .controls,.controls:focus-within{opacity:1}
+.control{width:38px;height:38px;border:0;border-radius:50%;display:grid;place-items:center;background:transparent;color:#fff;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.control:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
+.control:disabled{opacity:.28;cursor:default;transform:none}
+.counter{min-width:64px;text-align:center;color:#d7e2f2;font-size:13px;font-weight:650;letter-spacing:.08em}
+.progress{position:fixed;z-index:21;left:0;bottom:0;height:3px;background:var(--blue);transition:width .45s ease}
+.hint{position:fixed;z-index:19;right:20px;top:18px;color:var(--muted);font-size:12px;letter-spacing:.04em;opacity:.55;transition:opacity .3s}
+.hit{position:fixed;z-index:10;top:0;bottom:0;width:14vw;border:0;background:transparent;cursor:pointer}
+.hit.prev{left:0}.hit.next{right:0}
+svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:700px){.hint{display:none}.controls{opacity:.82}.hit{width:20vw}}
+@media(prefers-reduced-motion:reduce){.slide,.progress{transition:none}}
+</style>
+</head>
+<body>
+<main class="deck" aria-label="Oxford Infrastructure Partners presentation">
+  <div class="stage" id="stage"></div>
+  <button class="hit prev" id="prevHit" aria-label="Previous slide"></button>
+  <button class="hit next" id="nextHit" aria-label="Next slide"></button>
+  <div class="hint">Use arrow keys or swipe</div>
+  <nav class="controls" aria-label="Presentation controls">
+    <button class="control" id="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+    <span class="counter" id="counter" aria-live="polite"></span>
+    <button class="control" id="next" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+    <button class="control" id="full" aria-label="Enter fullscreen"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>
+  </nav>
+  <div class="progress" id="progress"></div>
+</main>
+<script>
+const total=11,stage=document.querySelector('#stage');
+for(let i=1;i<=total;i++){
+  const figure=document.createElement('figure');
+  figure.className='slide'; figure.dataset.slide=i;
+  const img=document.createElement('img');
+  img.src=`slides/slide-${i}.png`; img.alt=`Slide ${i} of ${total}`;
+  img.loading=i<3?'eager':'lazy'; img.decoding='async';
+  figure.append(img); stage.append(figure);
+}
+const slides=[...document.querySelectorAll('.slide')],counter=document.querySelector('#counter'),progress=document.querySelector('#progress'),prev=document.querySelector('#prev'),next=document.querySelector('#next');
+let current=Math.max(0,Math.min(total-1,(parseInt(location.hash.slice(1),10)||1)-1));
+function show(index,push=true){
+  current=Math.max(0,Math.min(total-1,index));
+  slides.forEach((slide,i)=>{slide.classList.toggle('active',i===current);slide.classList.toggle('before',i<current)});
+  counter.textContent=`${String(current+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;
+  progress.style.width=`${((current+1)/total)*100}%`; prev.disabled=current===0; next.disabled=current===total-1;
+  if(push)history.replaceState(null,'',`#${current+1}`);
+}
+prev.onclick=()=>show(current-1); next.onclick=()=>show(current+1);
+document.querySelector('#prevHit').onclick=()=>show(current-1); document.querySelector('#nextHit').onclick=()=>show(current+1);
+document.querySelector('#full').onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();show(current+1)}if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();show(current-1)}if(e.key==='Home')show(0);if(e.key==='End')show(total-1);if(e.key.toLowerCase()==='f')document.querySelector('#full').click()});
+addEventListener('hashchange',()=>show((parseInt(location.hash.slice(1),10)||1)-1,false));
+let startX=0,startY=0;stage.addEventListener('pointerdown',e=>{startX=e.clientX;startY=e.clientY});stage.addEventListener('pointerup',e=>{const x=e.clientX-startX,y=e.clientY-startY;if(Math.abs(x)>55&&Math.abs(x)>Math.abs(y))show(current+(x<0?1:-1))});
+show(current,false);
+</script>
+</body>
+</html>
