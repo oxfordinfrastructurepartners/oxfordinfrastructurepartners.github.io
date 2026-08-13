@@ -11,7 +11,22 @@ tools/
 # so publishing it again as raw markdown would just duplicate the site.
 laser-light-communications-commercial-strategy.md
 
+# Private backup repo. Mirrors this whole folder to a separate private
+# GitHub repo, including everything ignored above. Must never be published.
+.backup.git/
+.backup.log
+
+# Aubren deck source and build files. None of these are referenced by any
+# published page, so they stay internal. The rendered deck at
+# aubren-pipeline/ is the published output and is tracked.
+aubren/
+aubren-deck-assets/
+aubren-deck-build/
+OIP-Aubren-Infrastructure-Pipeline.pptx
+OIP-Aubren-Infrastructure-Pipeline.pptx.inspect.ndjson
+
 # OS cruft
 .DS_Store
 Thumbs.db
 desktop.ini
+node_modules/
